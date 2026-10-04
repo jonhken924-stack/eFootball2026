@@ -4,193 +4,206 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>eFootball 2026 Player Store</title>
+<title>Football Player Store</title>
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
-    background:
-    radial-gradient(circle at top,#123d65,#06111d 55%,#02070c);
-    color:white;
     min-height:100vh;
-    overflow-x:hidden;
+    color:white;
+    background:
+    radial-gradient(circle at top,#174d70,#06121d 55%,#020609);
 }
 
 header{
-    padding:22px;
+    padding:20px;
     text-align:center;
-    background:rgba(0,0,0,.55);
-    border-bottom:1px solid #1e6fa8;
-    position:sticky;
-    top:0;
-    z-index:10;
-    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,.65);
+    border-bottom:1px solid #1aa8df;
 }
 
 .logo{
-    font-size:30px;
+    font-size:28px;
     font-weight:900;
-    color:#00d9ff;
-    text-shadow:0 0 20px #00bfff;
+    color:#00e5ff;
+    text-shadow:0 0 20px #00d9ff;
 }
 
 .hero{
     text-align:center;
-    padding:55px 20px 30px;
+    padding:40px 15px 20px;
 }
 
 .hero h1{
-    font-size:45px;
-    margin-bottom:12px;
-    animation:pulse 2s infinite;
+    font-size:38px;
+    animation:glow 2s infinite;
 }
 
 .hero p{
-    color:#bdefff;
-    font-size:17px;
+    margin-top:10px;
+    color:#aeeaff;
 }
 
-@keyframes pulse{
-    0%,100%{text-shadow:0 0 10px #00bfff;}
-    50%{text-shadow:0 0 35px #00eaff;}
+@keyframes glow{
+    0%,100%{
+        text-shadow:0 0 8px #00cfff;
+    }
+    50%{
+        text-shadow:0 0 35px #00eaff;
+    }
 }
 
-.players{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-    gap:25px;
-    max-width:1100px;
-    margin:auto;
-    padding:25px;
+.store{
+    max-width:430px;
+    margin:25px auto;
+    padding:18px;
 }
 
 .card{
     position:relative;
-    padding:20px;
-    border-radius:22px;
-    background:linear-gradient(145deg,#112b40,#07121d);
-    border:1px solid #167ab0;
-    box-shadow:0 0 25px rgba(0,200,255,.18);
-    transition:.4s;
     overflow:hidden;
+    padding:18px;
+    border-radius:25px;
+    background:linear-gradient(145deg,#173d55,#07131d);
+    border:2px solid #168fc4;
+    box-shadow:0 0 35px rgba(0,210,255,.3);
+    animation:float 4s ease-in-out infinite;
 }
 
-.card:hover{
-    transform:translateY(-12px) scale(1.03);
-    box-shadow:0 0 40px rgba(0,220,255,.45);
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
 }
 
-.card:before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    background:#00d9ff;
-    filter:blur(90px);
-    opacity:.15;
-    top:-70px;
-    right:-60px;
-}
-
-.player{
-    height:230px;
+/* PLAYER IMAGE */
+.player-image{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+    object-position:center;
     border-radius:18px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:90px;
-    background:linear-gradient(160deg,#1686b8,#07131e);
-    margin-bottom:15px;
+    display:block;
+    background:#07131d;
+}
+
+.badge{
+    position:absolute;
+    top:28px;
+    left:28px;
+    background:#ffd43b;
+    color:#101010;
+    padding:9px 15px;
+    border-radius:12px;
+    font-weight:900;
 }
 
 .rating{
-    font-size:44px;
+    margin-top:18px;
+    font-size:58px;
     font-weight:900;
-    color:#ffd84d;
+    color:#ffd43b;
 }
 
-.name{
-    font-size:25px;
-    font-weight:bold;
+.player-name{
+    font-size:28px;
+    font-weight:900;
 }
 
 .position{
-    color:#8bdfff;
-    margin:5px 0 15px;
+    color:#91e7ff;
+    margin-top:5px;
 }
 
 .stats{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-bottom:18px;
+    gap:9px;
+    margin:20px 0;
 }
 
 .stat{
-    background:#071a27;
-    padding:9px;
-    border-radius:9px;
+    padding:12px;
+    border-radius:10px;
+    background:#061a27;
+    border:1px solid #16475e;
 }
 
-.stat span{
+.stat small{
+    color:#82aabd;
+}
+
+.stat strong{
     display:block;
-    color:#7db7ca;
-    font-size:12px;
-}
-
-.stat b{
-    font-size:17px;
+    font-size:20px;
+    margin-top:3px;
 }
 
 .price{
-    font-size:25px;
-    color:#45ff91;
-    font-weight:bold;
-    margin-bottom:15px;
+    text-align:center;
+    font-size:34px;
+    font-weight:900;
+    color:#48ff9a;
+    margin:20px 0;
 }
 
 .buy{
     width:100%;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(90deg,#00c853,#00e676);
-    color:#001b0b;
-    font-size:18px;
-    font-weight:900;
+    padding:17px;
+    border:0;
+    border-radius:13px;
     cursor:pointer;
+    font-size:20px;
+    font-weight:900;
+    color:#00180b;
+    background:linear-gradient(90deg,#00c853,#00ff88);
+    box-shadow:0 0 20px rgba(0,255,130,.35);
     transition:.3s;
 }
 
 .buy:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 25px #00ff80;
+    transform:scale(1.04);
+    box-shadow:0 0 35px #00ff88;
 }
 
-.info{
+.buy:active{
+    transform:scale(.97);
+}
+
+.payment{
     text-align:center;
-    margin:25px;
-    padding:20px;
+    margin-top:20px;
+    padding:18px;
     border-radius:15px;
     background:rgba(0,0,0,.45);
 }
 
 .mpesa{
-    color:#54ff9b;
-    font-size:20px;
-    font-weight:bold;
+    color:#52ff9b;
+    font-size:21px;
+    font-weight:900;
+}
+
+.number{
+    margin-top:8px;
+    font-size:18px;
+}
+
+.notice{
+    margin-top:10px;
+    font-size:13px;
+    color:#9db4bf;
 }
 
 footer{
     text-align:center;
     padding:30px;
-    color:#7093a5;
+    color:#7694a1;
 }
 </style>
 </head>
@@ -198,140 +211,134 @@ footer{
 <body>
 
 <header>
-    <div class="logo">⚽ eFOOTBALL 2026 STORE</div>
+    <div class="logo">⚽ FOOTBALL PLAYER STORE</div>
 </header>
 
 <section class="hero">
-    <h1>BUILD YOUR DREAM SQUAD</h1>
-    <p>Elite players • Powerful stats • Instant purchase</p>
+    <h1>ELITE PLAYER DROP</h1>
+    <p>Unlock a powerful 105-rated player</p>
 </section>
 
-<section class="players">
+<div class="store">
 
-<!-- PLAYER 1 -->
 <div class="card">
-    <div class="player">⚽</div>
 
-    <div class="rating">98</div>
-    <div class="name">LEGEND STRIKER</div>
-    <div class="position">CF • SUPER FINISHER</div>
+    <div class="badge">105 OVR</div>
 
-    <div class="stats">
-        <div class="stat"><span>Speed</span><b>97</b></div>
-        <div class="stat"><span>Shooting</span><b>99</b></div>
-        <div class="stat"><span>Passing</span><b>91</b></div>
-        <div class="stat"><span>Dribbling</span><b>96</b></div>
+    <!--
+    REPLACE THIS IMAGE URL WITH YOUR OWN
+    LICENSED PLAYER IMAGE.
+    -->
+    <img
+      class="player-image"
+      src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+      alt="Football player">
+
+    <div class="rating">105</div>
+
+    <div class="player-name">
+        ELITE FORWARD
     </div>
 
-    <div class="price">KSh 500</div>
-
-    <button class="buy"
-    onclick="pay(500,'Legend Striker')">
-    BUY NOW
-    </button>
-</div>
-
-
-<!-- PLAYER 2 -->
-<div class="card">
-    <div class="player">🔥</div>
-
-    <div class="rating">97</div>
-    <div class="name">ELITE WINGER</div>
-    <div class="position">RW • SPEED MASTER</div>
-
-    <div class="stats">
-        <div class="stat"><span>Speed</span><b>99</b></div>
-        <div class="stat"><span>Shooting</span><b>94</b></div>
-        <div class="stat"><span>Passing</span><b>92</b></div>
-        <div class="stat"><span>Dribbling</span><b>98</b></div>
+    <div class="position">
+        CF • LEGENDARY FINISHER
     </div>
 
-    <div class="price">KSh 400</div>
-
-    <button class="buy"
-    onclick="pay(400,'Elite Winger')">
-    BUY NOW
-    </button>
-</div>
-
-
-<!-- PLAYER 3 -->
-<div class="card">
-    <div class="player">🛡️</div>
-
-    <div class="rating">96</div>
-    <div class="name">WALL DEFENDER</div>
-    <div class="position">CB • DEFENSIVE BEAST</div>
-
     <div class="stats">
-        <div class="stat"><span>Defending</span><b>99</b></div>
-        <div class="stat"><span>Physical</span><b>98</b></div>
-        <div class="stat"><span>Speed</span><b>88</b></div>
-        <div class="stat"><span>Passing</span><b>86</b></div>
+
+        <div class="stat">
+            <small>Speed</small>
+            <strong>99</strong>
+        </div>
+
+        <div class="stat">
+            <small>Shooting</small>
+            <strong>105</strong>
+        </div>
+
+        <div class="stat">
+            <small>Dribbling</small>
+            <strong>103</strong>
+        </div>
+
+        <div class="stat">
+            <small>Passing</small>
+            <strong>96</strong>
+        </div>
+
+        <div class="stat">
+            <small>Physical</small>
+            <strong>101</strong>
+        </div>
+
+        <div class="stat">
+            <small>Finishing</small>
+            <strong>105</strong>
+        </div>
+
     </div>
 
-    <div class="price">KSh 350</div>
+    <div class="price">
+        KSh 250
+    </div>
 
-    <button class="buy"
-    onclick="pay(350,'Wall Defender')">
-    BUY NOW
+    <button class="buy" onclick="startPayment()">
+        ⚡ BUY NOW — KSh 250
     </button>
+
+    <div class="payment">
+
+        <div class="mpesa">
+            📱 M-PESA PAYMENT
+        </div>
+
+        <div class="number">
+            Payment Number: <b>0788245106</b>
+        </div>
+
+        <div class="notice">
+            You will receive the official M-Pesa payment
+            prompt on your phone.
+        </div>
+
+    </div>
+
 </div>
-
-</section>
-
-<div class="info">
-
-    <div class="mpesa">📱 PAY WITH M-PESA</div>
-
-    <p style="margin-top:10px;">
-        After tapping BUY NOW, follow the payment instructions.
-    </p>
-
-    <p style="margin-top:10px;">
-        M-Pesa Number:
-        <strong>0788245106</strong>
-    </p>
 
 </div>
 
 <footer>
-    © 2026 eFootball Player Store
+    © 2026 Football Player Store
 </footer>
 
 
 <script>
 
-function pay(amount,player){
-
-    let message =
-    "I want to buy " + player +
-    " for KSh " + amount +
-    ". Please send payment instructions.";
-
-    alert(
-        "ORDER CONFIRMED\n\n" +
-        player +
-        "\nPrice: KSh " + amount +
-        "\n\nM-Pesa: 0788245106\n\n" +
-        "Please complete payment and keep your M-Pesa confirmation."
-    );
+function startPayment(){
 
     /*
-      IMPORTANT:
-      This is only the front-end.
+    THIS BUTTON IS READY FOR YOUR
+    MPESA STK PUSH BACKEND.
 
-      For REAL automatic M-Pesa STK Push,
-      connect this button to your own backend
-      using Safaricom Daraja API.
-
-      Never put your Daraja Consumer Secret
-      directly inside this HTML file.
+    IMPORTANT:
+    Do NOT create a fake PIN box here.
+    The customer's M-Pesa PIN must be
+    entered only in the official
+    Safaricom/M-Pesa payment prompt.
     */
+
+    alert(
+        "M-PESA PAYMENT\n\n" +
+        "Player: Elite Forward\n" +
+        "Rating: 105\n" +
+        "Amount: KSh 250\n\n" +
+        "Your M-Pesa payment prompt will appear " +
+        "after the payment system is connected."
+    );
+
 }
 
 </script>
 
 </body>
-  </html>
+    </html>
