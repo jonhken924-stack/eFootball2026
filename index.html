@@ -1,46 +1,337 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WELCOME KONAMI 2026 - 105+ OVR</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>eFootball 2026 Player Store</title>
+
 <style>
-body{margin:0;background:#060b1f;color:#fff;font-family:Arial;text-align:center}
-.hero{background:linear-gradient(90deg,#00c853,#2962ff);padding:20px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;max-width:900px;margin:auto}
-.card{background:#121f3f;border-radius:20px;padding:10px;border:1px solid #2d4a7a;position:relative;animation:float 4s infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes glow{0%{box-shadow:0 0 10px #00ff88}50%{box-shadow:0 0 30px #00ff88}100%{box-shadow:0 0 10px #00ff88}}
-.pimg{width:100%;height:250px;border-radius:16px;object-fit:cover;border:2px solid #00ff88}
-.ovr{position:absolute;top:8px;right:8px;background:orange;padding:5px 10px;border-radius:20px;font-weight:900;font-size:12px}
-.price{color:#00ff88;font-weight:900;font-size:20px;margin:6px 0}
-.btn{display:block;background:#25D366;color:white;padding:10px;border-radius:30px;text-decoration:none;font-weight:900;margin-top:6px;animation:glow 2s infinite}
-.welcome{max-width:800px;margin:12px auto;background:#111d3a;padding:16px;border-radius:16px;border:2px solid #00ff88}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:
+    radial-gradient(circle at top,#123d65,#06111d 55%,#02070c);
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+header{
+    padding:22px;
+    text-align:center;
+    background:rgba(0,0,0,.55);
+    border-bottom:1px solid #1e6fa8;
+    position:sticky;
+    top:0;
+    z-index:10;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:30px;
+    font-weight:900;
+    color:#00d9ff;
+    text-shadow:0 0 20px #00bfff;
+}
+
+.hero{
+    text-align:center;
+    padding:55px 20px 30px;
+}
+
+.hero h1{
+    font-size:45px;
+    margin-bottom:12px;
+    animation:pulse 2s infinite;
+}
+
+.hero p{
+    color:#bdefff;
+    font-size:17px;
+}
+
+@keyframes pulse{
+    0%,100%{text-shadow:0 0 10px #00bfff;}
+    50%{text-shadow:0 0 35px #00eaff;}
+}
+
+.players{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+    padding:25px;
+}
+
+.card{
+    position:relative;
+    padding:20px;
+    border-radius:22px;
+    background:linear-gradient(145deg,#112b40,#07121d);
+    border:1px solid #167ab0;
+    box-shadow:0 0 25px rgba(0,200,255,.18);
+    transition:.4s;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-12px) scale(1.03);
+    box-shadow:0 0 40px rgba(0,220,255,.45);
+}
+
+.card:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:#00d9ff;
+    filter:blur(90px);
+    opacity:.15;
+    top:-70px;
+    right:-60px;
+}
+
+.player{
+    height:230px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:90px;
+    background:linear-gradient(160deg,#1686b8,#07131e);
+    margin-bottom:15px;
+}
+
+.rating{
+    font-size:44px;
+    font-weight:900;
+    color:#ffd84d;
+}
+
+.name{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.position{
+    color:#8bdfff;
+    margin:5px 0 15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.stat{
+    background:#071a27;
+    padding:9px;
+    border-radius:9px;
+}
+
+.stat span{
+    display:block;
+    color:#7db7ca;
+    font-size:12px;
+}
+
+.stat b{
+    font-size:17px;
+}
+
+.price{
+    font-size:25px;
+    color:#45ff91;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.buy{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#00c853,#00e676);
+    color:#001b0b;
+    font-size:18px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.buy:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px #00ff80;
+}
+
+.info{
+    text-align:center;
+    margin:25px;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(0,0,0,.45);
+}
+
+.mpesa{
+    color:#54ff9b;
+    font-size:20px;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#7093a5;
+}
 </style>
 </head>
+
 <body>
-<div class="hero">
-<h1>🎮 WELCOME TO KONAMI 2026 SHOP 🎮</h1>
-<h3>105+ SUPER BEASTS • 300 KES • M-PESA 0788245106</h3>
-</div>
 
-<div class="welcome">
-<h2>Karibu Sana! Choose Your Player 👇</h2>
-<p>All 105-108 OVR • Instant WhatsApp Delivery</p>
-<p>M-PESA: <b style="color:#00ff88;font-size:20px">0788245106</b></p>
-<a href="https://wa.me/254788245106?text=I%20paid%20300%20KES" style="display:block;background:#2962ff;color:white;padding:12px;border-radius:30px;text-decoration:none;font-weight:900;margin-top:10px;max-width:360px;margin:0 auto">I HAVE PAID - WHATSAPP ME</a>
-</div>
+<header>
+    <div class="logo">⚽ eFOOTBALL 2026 STORE</div>
+</header>
 
-<div class="grid">
-<!-- MBAPPE CARD WITH IMAGE INSIDE - NO EMPTY BOX -->
+<section class="hero">
+    <h1>BUILD YOUR DREAM SQUAD</h1>
+    <p>Elite players • Powerful stats • Instant purchase</p>
+</section>
+
+<section class="players">
+
+<!-- PLAYER 1 -->
 <div class="card">
-<div class="ovr">108 OVR</div>
-<img class="pimg" src="data:image/jpeg;base64,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">
-<b>MBAPPE 108 - SUPER BEAST</b>
-<div class="price">300 KES</div>
-<a class="btn" href="https://wa.me/254788245106?text=I%20want%20MBAPPE%20108">BUY - M-PESA 300</a>
+    <div class="player">⚽</div>
+
+    <div class="rating">98</div>
+    <div class="name">LEGEND STRIKER</div>
+    <div class="position">CF • SUPER FINISHER</div>
+
+    <div class="stats">
+        <div class="stat"><span>Speed</span><b>97</b></div>
+        <div class="stat"><span>Shooting</span><b>99</b></div>
+        <div class="stat"><span>Passing</span><b>91</b></div>
+        <div class="stat"><span>Dribbling</span><b>96</b></div>
+    </div>
+
+    <div class="price">KSh 500</div>
+
+    <button class="buy"
+    onclick="pay(500,'Legend Striker')">
+    BUY NOW
+    </button>
 </div>
 
-<!-- Add more cards same way - just change name and base64 image -->
+
+<!-- PLAYER 2 -->
+<div class="card">
+    <div class="player">🔥</div>
+
+    <div class="rating">97</div>
+    <div class="name">ELITE WINGER</div>
+    <div class="position">RW • SPEED MASTER</div>
+
+    <div class="stats">
+        <div class="stat"><span>Speed</span><b>99</b></div>
+        <div class="stat"><span>Shooting</span><b>94</b></div>
+        <div class="stat"><span>Passing</span><b>92</b></div>
+        <div class="stat"><span>Dribbling</span><b>98</b></div>
+    </div>
+
+    <div class="price">KSh 400</div>
+
+    <button class="buy"
+    onclick="pay(400,'Elite Winger')">
+    BUY NOW
+    </button>
 </div>
+
+
+<!-- PLAYER 3 -->
+<div class="card">
+    <div class="player">🛡️</div>
+
+    <div class="rating">96</div>
+    <div class="name">WALL DEFENDER</div>
+    <div class="position">CB • DEFENSIVE BEAST</div>
+
+    <div class="stats">
+        <div class="stat"><span>Defending</span><b>99</b></div>
+        <div class="stat"><span>Physical</span><b>98</b></div>
+        <div class="stat"><span>Speed</span><b>88</b></div>
+        <div class="stat"><span>Passing</span><b>86</b></div>
+    </div>
+
+    <div class="price">KSh 350</div>
+
+    <button class="buy"
+    onclick="pay(350,'Wall Defender')">
+    BUY NOW
+    </button>
+</div>
+
+</section>
+
+<div class="info">
+
+    <div class="mpesa">📱 PAY WITH M-PESA</div>
+
+    <p style="margin-top:10px;">
+        After tapping BUY NOW, follow the payment instructions.
+    </p>
+
+    <p style="margin-top:10px;">
+        M-Pesa Number:
+        <strong>0788245106</strong>
+    </p>
+
+</div>
+
+<footer>
+    © 2026 eFootball Player Store
+</footer>
+
+
+<script>
+
+function pay(amount,player){
+
+    let message =
+    "I want to buy " + player +
+    " for KSh " + amount +
+    ". Please send payment instructions.";
+
+    alert(
+        "ORDER CONFIRMED\n\n" +
+        player +
+        "\nPrice: KSh " + amount +
+        "\n\nM-Pesa: 0788245106\n\n" +
+        "Please complete payment and keep your M-Pesa confirmation."
+    );
+
+    /*
+      IMPORTANT:
+      This is only the front-end.
+
+      For REAL automatic M-Pesa STK Push,
+      connect this button to your own backend
+      using Safaricom Daraja API.
+
+      Never put your Daraja Consumer Secret
+      directly inside this HTML file.
+    */
+}
+
+</script>
+
 </body>
-</html>
+  </html>
