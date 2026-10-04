@@ -1,68 +1,33 @@
-<!DOCTYPE html>
+1<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Konami 2026 - Buy Strong Players 300 KES</title>
+<title>KONAMI 2026 - SUPER STARS 300 KES</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#020612;color:white;font-family:Arial;text-align:center}
-@keyframes glow{0%{box-shadow:0 0 10px #00ff88}50%{box-shadow:0 0 25px #00ff88}100%{box-shadow:0 0 10px #00ff88}}
-.hero{background:linear-gradient(90deg,#00c853,#0091ff);padding:30px}
-.grid{max-width:800px;margin:15px auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px}
-.card{background:#141b2e;border-radius:18px;padding:12px;border:1px solid #2a3350;position:relative;overflow:hidden}
-.card b{color:#00ff88}
-.price{background:#00c853;color:black;font-weight:bold;padding:6px 12px;border-radius:20px;display:inline-block;margin:6px 0}
-.btn{display:block;background:linear-gradient(90deg,#25D366,#00c853);color:white;padding:12px;border-radius:30px;text-decoration:none;font-weight:bold;margin-top:8px;animation:glow 2s infinite}
-.player-img{width:100%;height:110px;background:linear-gradient(135deg,#1a2340,#2a3350);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:40px}
-.badge{position:absolute;top:8px;right:8px;background:#ff3d00;padding:4px 8px;border-radius:10px;font-size:11px;font-weight:bold}
-input{width:90%;max-width:400px;padding:14px;border-radius:30px;border:none;margin:8px 0;text-align:center;font-size:16px}
+body{background:#050a1a;color:white;font-family:Arial;text-align:center;overflow-x:hidden}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(1deg)}}
+@keyframes shine{0%{left:-100%}100%{left:200%}}
+@keyframes glow{0%{box-shadow:0 0 15px #00ff88}50%{box-shadow:0 0 35px #00ff88,0 0 60px #00ff88}100%{box-shadow:0 0 15px #00ff88}}
+@keyframes bar{0%{width:0}100%{width:var(--w)}}
+.hero{background:linear-gradient(270deg,#00c853,#2962ff,#ff00ff,#00c853);background-size:400% 400%;animation:grad 6s infinite;padding:28px}
+@keyframes grad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.grid{max-width:900px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:12px}
+.card{background:linear-gradient(145deg,#131c35,#0e1428);border-radius:22px;padding:12px;border:1px solid #2a3a6a;animation:float 4s ease-in-out infinite;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transform:skewX(-20deg);animation:shine 3s infinite}
+.img{width:100%;height:145px;border-radius:16px;background:#000;object-fit:cover;border:2px solid #00ff88}
+.str{height:8px;background:#222;border-radius:10px;margin:4px 0;overflow:hidden;text-align:left}
+.fill{height:100%;background:linear-gradient(90deg,#00ff88,#00d4ff);animation:bar 2s forwards}
+.price{background:linear-gradient(90deg,#00ff88,#00c853);color:black;font-weight:900;padding:7px 16px;border-radius:30px;display:inline-block;margin:6px 0;font-size:18px}
+.btn{display:block;background:linear-gradient(90deg,#25D366,#00c853);color:white;padding:13px;border-radius:40px;text-decoration:none;font-weight:900;margin-top:8px;animation:glow 2s infinite}
+.ovr{position:absolute;top:10px;right:10px;background:linear-gradient(90deg,#ff3d00,#ffab00);padding:6px 10px;border-radius:20px;font-weight:900;font-size:13px;z-index:2}
+.ticker{background:#000;color:#00ff88;padding:8px;font-family:monospace;white-space:nowrap;overflow:hidden}
+.ticker div{animation:marq 18s linear infinite;display:inline-block}
+@keyframes marq{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
 </style>
 </head>
 <body>
 <div class="hero">
-<h1>🎮 KONAMI eFOOTBALL 2026 STORE</h1>
-<h2>🔥 Strong Players - Only 300 KES 🔥</h2>
-<p>Instant Delivery via WhatsApp | M-Pesa Accepted</p>
-<p style="margin-top:8px;background:black;display:inline-block;padding:6px 14px;border-radius:20px">📱 M-Pesa: <b>0788245106</b> - Willison</p>
-</div>
-
-<div style="max-width:700px;margin:15px auto;background:#111a2e;padding:15px;border-radius:15px">
-<h3>How to Buy:</h3>
-<p>1. Tap BUY on player<br>2. Pay 300 KES to M-Pesa 0788245106<br>3. WhatsApp screenshot + Player Name<br>4. Get player in 2 minutes</p>
-<input id="phone" placeholder="Enter Your M-Pesa Number e.g 07..." />
-<a class="btn" onclick="buy('ALL PLAYERS')" href="https://wa.me/254788245106?text=Hi%20Willison,%20I%20want%20to%20buy%20Konami%20player%20300%20KES">💬 Order on WhatsApp</a>
-</div>
-
-<div class="grid">
-<div class="card"><div class="badge">102 OVR</div><div class="player-img">🇦🇷⚽</div><b>MESSI 2026</b><br>Speed 98 | Shoot 99<br><div class="price">300 KES</div><a class="btn" href="https://wa.me/254788245106?text=I%20want%20to%20buy%20MESSI%20102%20for%20300%20KES%20M-Pesa%20Number:">BUY NOW - M-PESA</a></div>
-
-<div class="card"><div class="badge">101 OVR</div><div class="player-img">🇵🇹⚽</div><b>RONALDO 2026</b><br>Speed 97 | Power 99<br><div class="price">300 KES</div><a class="btn" href="https://wa.me/254788245106?text=I%20want%20to%20buy%20RONALDO%20101%20for%20300%20KES">BUY NOW - M-PESA</a></div>
-
-<div class="card"><div class="badge">103 OVR</div><div class="player-img">🇫🇷⚽</div><b>MBAPPE 2026</b><br>Speed 102 | Dribble 98<br><div class="price">300 KES</div><a class="btn" href="https://wa.me/254788245106?text=I%20want%20to%20buy%20MBAPPE%20103%20for%20300%20KES">BUY NOW - M-PESA</a></div>
-
-<div class="card"><div class="badge">101 OVR</div><div class="player-img">🇳🇴⚽</div><b>HAALAND 2026</b><br>Shoot 101 | Power 100<br><div class="price">300 KES</div><a class="btn" href="https://wa.me/254788245106?text=I%20want%20to%20buy%20HAALAND%20for%20300%20KES">BUY NOW - M-PESA</a></div>
-
-<div class="card"><div class="badge">100 OVR</div><div class="player-img">🇧🇷⚽</div><b>NEYMAR 2026</b><br>Dribble 101 | Skills 100<br><div class="price">300 KES</div><a class="btn" href="https://wa.me/254788245106?text=I%20want%20to%20buy%20NEYMAR%20for%20300%20KES">BUY NOW - M-PESA</a></div>
-
-<div class="card"><div class="badge">100 OVR</div><div class="player-img">🏴󠁧󠁢󠁥󠁮󠁧󠁿⚽</div><b>BELLINGHAM 2026</b><br>Mid 99 | Pass 98<br><div class="price">300 KES</div><a class="btn" href="https://wa.me/254788245106?text=I%20want%20to%20buy%20BELLINGHAM%20for%20300%20KES">BUY NOW - M-PESA</a></div>
-
-<div class="card"><div class="badge">PACK</div><div class="player-img">🎁</div><b>5 STRONG PLAYERS PACK</b><br>All 100+ OVR<br><div class="price">1000 KES (Save 500)</div><a class="btn" style="background:linear-gradient(90deg,#ff3d00,#ffab00)" href="https://wa.me/254788245106?text=I%20want%20PACK%20of%205%20players%20for%201000%20KES">BUY PACK - M-PESA</a></div>
-
-<div class="card"><div class="badge">VIP</div><div class="player-img">👑</div><b>FULL ACCOUNT 2026</b><br>20 Strong Players<br><div class="price">2500 KES</div><a class="btn" style="background:linear-gradient(90deg,#2962ff,#00d4ff)" href="https://wa.me/254788245106?text=I%20want%20FULL%20KONAMI%20ACCOUNT%202026%20for%202500%20KES">BUY ACCOUNT</a></div>
-</div>
-
-<div style="padding:20px;color:gray;font-size:12px">
-M-Pesa Lipa: 0788245106<br>
-After payment, send screenshot to WhatsApp 0788245106 for instant delivery<br><br>
-Also Trade? <a href="https://t.deriv.link?t=ZKVMXBVCE4P5" style="color:#00ff88">Join Deriv Here</a>
-</div>
-
-<script>
-function buy(player){
-let phone=document.getElementById('phone').value;
-let msg=`I want to buy ${player} for 300 KES. My M-Pesa number is ${phone}`;
-window.open(`https://wa.me/254788245106?text=${encodeURIComponent(msg)}`,'_blank');
-}
-</script>
-</body>
-</html>
+<h1>⚡ KONAMI eFOOTBALL 2026 ⚡</h1>
+<h2>100% SUPER STARS - ONLY 300 KES</h2>
+<p
