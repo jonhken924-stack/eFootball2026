@@ -4,336 +4,704 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Football Player Store</title>
+<title>Elite Football Player Store</title>
 
 <style>
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,sans-serif;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    min-height:100vh;
-    color:white;
     background:
-    radial-gradient(circle at top,#174d70,#06121d 55%,#020609);
+        radial-gradient(circle at top,#123b75 0%,#071536 35%,#020611 100%);
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
 }
 
+/* BACKGROUND EFFECT */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(120deg,transparent 45%,rgba(0,150,255,.08) 50%,transparent 55%);
+    background-size:300% 300%;
+    animation:backgroundMove 8s infinite linear;
+    pointer-events:none;
+}
+
+@keyframes backgroundMove{
+    0%{background-position:0% 50%}
+    100%{background-position:300% 50%}
+}
+
+/* HEADER */
 header{
-    padding:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
     text-align:center;
-    background:rgba(0,0,0,.65);
-    border-bottom:1px solid #1aa8df;
+    padding:20px 15px;
+    background:rgba(2,7,20,.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(0,210,255,.5);
 }
 
 .logo{
-    font-size:28px;
-    font-weight:900;
+    font-size:30px;
+    font-weight:1000;
     color:#00e5ff;
-    text-shadow:0 0 20px #00d9ff;
+    text-shadow:
+        0 0 8px #00e5ff,
+        0 0 25px #008cff;
 }
 
+.logo span{
+    color:#ffd83d;
+}
+
+/* HERO */
 .hero{
     text-align:center;
-    padding:40px 15px 20px;
+    padding:55px 20px 35px;
 }
 
 .hero h1{
-    font-size:38px;
-    animation:glow 2s infinite;
+    font-size:clamp(34px,7vw,65px);
+    font-weight:1000;
+    letter-spacing:1px;
+    animation:heroGlow 2.5s infinite;
+}
+
+.hero h1 span{
+    color:#ffd83d;
 }
 
 .hero p{
-    margin-top:10px;
-    color:#aeeaff;
+    margin-top:15px;
+    color:#a9dff5;
+    font-size:18px;
 }
 
-@keyframes glow{
+@keyframes heroGlow{
     0%,100%{
-        text-shadow:0 0 8px #00cfff;
+        text-shadow:0 0 10px #008cff;
     }
     50%{
-        text-shadow:0 0 35px #00eaff;
+        text-shadow:
+            0 0 10px #00d9ff,
+            0 0 35px #008cff;
     }
 }
 
-.store{
-    max-width:430px;
-    margin:25px auto;
-    padding:18px;
+/* PLAYER GRID */
+.players{
+    width:min(1200px,94%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    padding:20px 0 50px;
 }
 
+/* CARD */
 .card{
     position:relative;
+    padding:12px;
+    border-radius:24px;
+    background:
+        linear-gradient(145deg,
+        rgba(20,52,95,.95),
+        rgba(3,11,28,.98));
+    border:1px solid rgba(0,210,255,.55);
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.5),
+        0 0 20px rgba(0,160,255,.18);
     overflow:hidden;
-    padding:18px;
-    border-radius:25px;
-    background:linear-gradient(145deg,#173d55,#07131d);
-    border:2px solid #168fc4;
-    box-shadow:0 0 35px rgba(0,210,255,.3);
-    animation:float 4s ease-in-out infinite;
+    transition:.45s;
 }
 
-@keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
+.card:hover{
+    transform:translateY(-12px) scale(1.025);
+    border-color:#00e5ff;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.6),
+        0 0 35px rgba(0,210,255,.45);
 }
 
-/* PLAYER IMAGE */
-.player-image{
+/* IMAGE */
+.card img{
     width:100%;
-    height:350px;
+    height:420px;
     object-fit:cover;
-    object-position:center;
-    border-radius:18px;
+    border-radius:17px;
     display:block;
-    background:#07131d;
+    transition:.5s;
 }
 
-.badge{
-    position:absolute;
-    top:28px;
-    left:28px;
-    background:#ffd43b;
-    color:#101010;
-    padding:9px 15px;
-    border-radius:12px;
-    font-weight:900;
+.card:hover img{
+    transform:scale(1.035);
 }
 
+/* RATING */
 .rating{
-    margin-top:18px;
-    font-size:58px;
-    font-weight:900;
-    color:#ffd43b;
+    position:absolute;
+    top:22px;
+    left:22px;
+    background:linear-gradient(135deg,#ffd83d,#ff9d00);
+    color:#111;
+    padding:8px 13px;
+    border-radius:12px;
+    font-size:24px;
+    font-weight:1000;
+    box-shadow:0 0 18px rgba(255,200,30,.6);
 }
 
-.player-name{
-    font-size:28px;
-    font-weight:900;
+/* CARD DETAILS */
+.details{
+    padding:16px 8px 8px;
+}
+
+.name{
+    font-size:25px;
+    font-weight:1000;
 }
 
 .position{
-    color:#91e7ff;
+    color:#7de4ff;
     margin-top:5px;
 }
 
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
-    margin:20px 0;
-}
-
-.stat{
-    padding:12px;
-    border-radius:10px;
-    background:#061a27;
-    border:1px solid #16475e;
-}
-
-.stat small{
-    color:#82aabd;
-}
-
-.stat strong{
-    display:block;
-    font-size:20px;
-    margin-top:3px;
-}
-
 .price{
-    text-align:center;
-    font-size:34px;
-    font-weight:900;
-    color:#48ff9a;
-    margin:20px 0;
+    font-size:29px;
+    font-weight:1000;
+    color:#4dff9b;
+    margin:15px 0;
 }
 
+/* BUY BUTTON */
 .buy{
     width:100%;
-    padding:17px;
     border:0;
+    padding:16px;
     border-radius:13px;
+    background:linear-gradient(
+        90deg,
+        #00c853,
+        #00ff88
+    );
+    color:#001a0b;
+    font-size:18px;
+    font-weight:1000;
     cursor:pointer;
-    font-size:20px;
-    font-weight:900;
-    color:#00180b;
-    background:linear-gradient(90deg,#00c853,#00ff88);
-    box-shadow:0 0 20px rgba(0,255,130,.35);
-    transition:.3s;
+    box-shadow:0 0 20px rgba(0,255,120,.3);
+    transition:.25s;
 }
 
 .buy:hover{
-    transform:scale(1.04);
-    box-shadow:0 0 35px #00ff88;
+    transform:scale(1.035);
+    box-shadow:0 0 35px rgba(0,255,120,.7);
 }
 
 .buy:active{
     transform:scale(.97);
 }
 
+/* PAYMENT SECTION */
 .payment{
+    width:min(700px,92%);
+    margin:20px auto 60px;
+    padding:28px;
     text-align:center;
-    margin-top:20px;
-    padding:18px;
-    border-radius:15px;
+    border-radius:20px;
     background:rgba(0,0,0,.45);
+    border:1px solid rgba(0,220,255,.3);
 }
 
-.mpesa{
-    color:#52ff9b;
-    font-size:21px;
+.payment h2{
+    color:#52ff9c;
+    margin-bottom:10px;
+}
+
+.payment-number{
+    font-size:24px;
+    font-weight:1000;
+    margin:12px 0;
+    color:#fff;
+}
+
+.payment small{
+    color:#8eacba;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:500;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(8px);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:min(420px,100%);
+    background:linear-gradient(145deg,#102b4b,#050d1c);
+    border:1px solid #00d9ff;
+    border-radius:22px;
+    padding:28px;
+    text-align:center;
+    box-shadow:0 0 45px rgba(0,200,255,.4);
+    animation:popup .3s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modal-box h2{
+    color:#00e5ff;
+    margin-bottom:15px;
+}
+
+.modal-box p{
+    color:#b8d8e5;
+    line-height:1.6;
+}
+
+.phone{
+    width:100%;
+    margin:18px 0;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #1d7194;
+    background:#061321;
+    color:white;
+    font-size:17px;
+    outline:none;
+}
+
+.continue{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:11px;
+    background:#00d978;
+    color:#00150a;
+    font-size:17px;
     font-weight:900;
+    cursor:pointer;
 }
 
-.number{
-    margin-top:8px;
-    font-size:18px;
+.close{
+    margin-top:12px;
+    width:100%;
+    padding:12px;
+    border:1px solid #31566c;
+    border-radius:11px;
+    background:transparent;
+    color:white;
+    cursor:pointer;
 }
 
-.notice{
-    margin-top:10px;
-    font-size:13px;
-    color:#9db4bf;
-}
-
+/* FOOTER */
 footer{
     text-align:center;
-    padding:30px;
-    color:#7694a1;
+    padding:35px 20px;
+    color:#7894a3;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    .hero{
+        padding-top:35px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .players{
+        grid-template-columns:1fr;
+        width:92%;
+    }
+
+    .card img{
+        height:auto;
+        max-height:520px;
+    }
+
+    .logo{
+        font-size:23px;
+    }
 }
 </style>
 </head>
 
+
 <body>
 
+<!-- HEADER -->
 <header>
-    <div class="logo">⚽ FOOTBALL PLAYER STORE</div>
+    <div class="logo">
+        ⚽ ELITE <span>FOOTBALL</span> STORE
+    </div>
 </header>
 
+
+<!-- HERO -->
 <section class="hero">
-    <h1>ELITE PLAYER DROP</h1>
-    <p>Unlock a powerful 105-rated player</p>
+
+    <h1>
+        LEGENDARY <span>PLAYERS</span>
+    </h1>
+
+    <p>
+        Choose your player • KSh 250 each • Secure M-Pesa payment
+    </p>
+
 </section>
 
-<div class="store">
 
-<div class="card">
+<!-- PLAYERS -->
+<section class="players">
 
-    <div class="badge">105 OVR</div>
 
-    <!--
-    REPLACE THIS IMAGE URL WITH YOUR OWN
-    LICENSED PLAYER IMAGE.
-    -->
-    <img
-      class="player-image"
-      src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
-      alt="Football player">
+    <!-- MBAPPE -->
+    <div class="card">
 
-    <div class="rating">105</div>
+        <div class="rating">98</div>
 
-    <div class="player-name">
-        ELITE FORWARD
-    </div>
+        <img
+        src="1000040878.jpg"
+        alt="Kylian Mbappe football player card">
 
-    <div class="position">
-        CF • LEGENDARY FINISHER
-    </div>
+        <div class="details">
 
-    <div class="stats">
+            <div class="name">
+                Kylian Mbappé
+            </div>
 
-        <div class="stat">
-            <small>Speed</small>
-            <strong>99</strong>
-        </div>
+            <div class="position">
+                🇫🇷 France • ST
+            </div>
 
-        <div class="stat">
-            <small>Shooting</small>
-            <strong>105</strong>
-        </div>
+            <div class="price">
+                KSh 250
+            </div>
 
-        <div class="stat">
-            <small>Dribbling</small>
-            <strong>103</strong>
-        </div>
+            <button
+            class="buy"
+            onclick="openPayment('Kylian Mbappé')">
 
-        <div class="stat">
-            <small>Passing</small>
-            <strong>96</strong>
-        </div>
+                ⚡ BUY NOW — KSh 250
 
-        <div class="stat">
-            <small>Physical</small>
-            <strong>101</strong>
-        </div>
+            </button>
 
-        <div class="stat">
-            <small>Finishing</small>
-            <strong>105</strong>
         </div>
 
     </div>
 
-    <div class="price">
-        KSh 250
+
+    <!-- HAALAND -->
+    <div class="card">
+
+        <div class="rating">94</div>
+
+        <img
+        src="1000040879.jpg"
+        alt="Erling Haaland football player card">
+
+        <div class="details">
+
+            <div class="name">
+                Erling Haaland
+            </div>
+
+            <div class="position">
+                🇳🇴 Norway • ST
+            </div>
+
+            <div class="price">
+                KSh 250
+            </div>
+
+            <button
+            class="buy"
+            onclick="openPayment('Erling Haaland')">
+
+                ⚡ BUY NOW — KSh 250
+
+            </button>
+
+        </div>
+
     </div>
 
-    <button class="buy" onclick="startPayment()">
-        ⚡ BUY NOW — KSh 250
-    </button>
 
-    <div class="payment">
+    <!-- NEYMAR -->
+    <div class="card">
 
-        <div class="mpesa">
-            📱 M-PESA PAYMENT
+        <div class="rating">97</div>
+
+        <img
+        src="1000040881.jpg"
+        alt="Neymar football player card">
+
+        <div class="details">
+
+            <div class="name">
+                Neymar Jr
+            </div>
+
+            <div class="position">
+                🇧🇷 Brazil • LW
+            </div>
+
+            <div class="price">
+                KSh 250
+            </div>
+
+            <button
+            class="buy"
+            onclick="openPayment('Neymar Jr')">
+
+                ⚡ BUY NOW — KSh 250
+
+            </button>
+
         </div>
 
-        <div class="number">
-            Payment Number: <b>0788245106</b>
+    </div>
+
+
+    <!-- RONALDO -->
+    <div class="card">
+
+        <div class="rating">99</div>
+
+        <img
+        src="1000040880.jpg"
+        alt="Cristiano Ronaldo football player card">
+
+        <div class="details">
+
+            <div class="name">
+                Cristiano Ronaldo
+            </div>
+
+            <div class="position">
+                🇵🇹 Portugal • ST
+            </div>
+
+            <div class="price">
+                KSh 250
+            </div>
+
+            <button
+            class="buy"
+            onclick="openPayment('Cristiano Ronaldo')">
+
+                ⚡ BUY NOW — KSh 250
+
+            </button>
+
         </div>
 
-        <div class="notice">
-            You will receive the official M-Pesa payment
-            prompt on your phone.
+    </div>
+
+
+    <!-- MESSI -->
+    <div class="card">
+
+        <div class="rating">97</div>
+
+        <img
+        src="1000040882.jpg"
+        alt="Lionel Messi football player card">
+
+        <div class="details">
+
+            <div class="name">
+                Lionel Messi
+            </div>
+
+            <div class="position">
+                🇦🇷 Argentina • FW
+            </div>
+
+            <div class="price">
+                KSh 250
+            </div>
+
+            <button
+            class="buy"
+            onclick="openPayment('Lionel Messi')">
+
+                ⚡ BUY NOW — KSh 250
+
+            </button>
+
         </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- PAYMENT INFORMATION -->
+<section class="payment">
+
+    <h2>📱 M-PESA PAYMENT</h2>
+
+    <p>
+        All players are KSh 250.
+    </p>
+
+    <div class="payment-number">
+        0788245106
+    </div>
+
+    <small>
+        For automatic checkout, connect this store
+        to Safaricom Daraja STK Push.
+    </small>
+
+</section>
+
+
+<!-- PAYMENT MODAL -->
+<div class="modal" id="paymentModal">
+
+    <div class="modal-box">
+
+        <h2>⚡ Complete Purchase</h2>
+
+        <p id="selectedPlayer">
+            Selected player
+        </p>
+
+        <p>
+            Price: <strong>KSh 250</strong>
+        </p>
+
+        <input
+        class="phone"
+        id="phoneNumber"
+        type="tel"
+        placeholder="Enter M-Pesa phone number"
+        maxlength="12">
+
+        <button
+        class="continue"
+        onclick="requestPayment()">
+
+            CONTINUE TO M-PESA
+
+        </button>
+
+        <button
+        class="close"
+        onclick="closePayment()">
+
+            CANCEL
+
+        </button>
+
+        <p style="margin-top:15px;font-size:12px;color:#8098a5;">
+            Your M-Pesa PIN must only be entered in the
+            official M-Pesa/Safaricom payment prompt.
+        </p>
 
     </div>
 
 </div>
 
-</div>
 
 <footer>
-    © 2026 Football Player Store
+    © 2026 Elite Football Store
 </footer>
 
 
 <script>
 
-function startPayment(){
+let selectedPlayer = "";
+
+
+/* OPEN PAYMENT WINDOW */
+function openPayment(player){
+
+    selectedPlayer = player;
+
+    document.getElementById("selectedPlayer").innerHTML =
+        "You selected <strong>" + player + "</strong>";
+
+    document.getElementById("paymentModal").style.display = "flex";
+}
+
+
+/* CLOSE PAYMENT WINDOW */
+function closePayment(){
+
+    document.getElementById("paymentModal").style.display = "none";
+
+}
+
+
+/* PAYMENT */
+function requestPayment(){
+
+    const phone =
+        document.getElementById("phoneNumber").value.trim();
+
+    if(phone === ""){
+
+        alert("Please enter your M-Pesa phone number.");
+
+        return;
+    }
+
 
     /*
-    THIS BUTTON IS READY FOR YOUR
-    MPESA STK PUSH BACKEND.
-
     IMPORTANT:
-    Do NOT create a fake PIN box here.
-    The customer's M-Pesa PIN must be
-    entered only in the official
-    Safaricom/M-Pesa payment prompt.
+
+    THIS IS WHERE YOUR REAL SAFARICOM
+    DARAJA STK PUSH BACKEND WILL BE CONNECTED.
+
+    Do NOT ask the customer for their
+    M-Pesa PIN inside this website.
+
+    A real STK Push will cause the official
+    M-Pesa prompt to appear on the customer's
+    phone, where they enter their PIN privately.
     */
 
+
     alert(
-        "M-PESA PAYMENT\n\n" +
-        "Player: Elite Forward\n" +
-        "Rating: 105\n" +
-        "Amount: KSh 250\n\n" +
-        "Your M-Pesa payment prompt will appear " +
-        "after the payment system is connected."
+        "Payment request ready!\n\n" +
+        "Player: " + selectedPlayer + "\n" +
+        "Amount: KSh 250\n" +
+        "Phone: " + phone +
+        "\n\n" +
+        "The real M-Pesa prompt will appear here " +
+        "after your Daraja STK Push backend is connected."
     );
 
 }
